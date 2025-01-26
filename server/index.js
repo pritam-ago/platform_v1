@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 
 dotenv.config();
-const port = 8888;
+const PORT = 8888;
 
 const app = express();
 
@@ -12,16 +12,19 @@ app.get('/', (req, res) => {
     res.send('hello world');
 });
 
-app.listen(port, () => {
+app.listen(PORT, () => {
     console.log(`Server running on port ${port}`);
 });
 
-mongoose.connect(process.env.MONGO_URI)
-.then(()=> {
-    console.log('connected to db');
-    app.get('/con', (req, res) => {
-        res.send('connected');
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log('MongoDB connected');
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
     });
-}).catch((error) =>{
-     console.log('Error connecting: ', error);
-});
+  })
+  .catch((err) => {
+    console.error('MongoDB connection error:', err.message);
+    process.exit(1); 
+  });
