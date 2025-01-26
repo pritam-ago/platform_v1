@@ -19,6 +19,9 @@ app.listen(port, () => {
 mongoose.connect(process.env.MONGO_URI)
 .then(()=> {
     console.log('connected to db');
+    app.get('/', (req, res)=> {
+        res.send('connected')
+    })
 }).catch((error) =>{
      console.log('Error connecting: ', error);
 });
