@@ -12,16 +12,14 @@ app.get('/', (req, res) => {
     res.send('hello world');
 });
 
-app.listen(port, () => {
-    console.log(`Server running on port ${port}`);
-});
+
 
 mongoose.connect(process.env.MONGO_URI)
 .then(()=> {
     console.log('connected to db');
-    app.get('/', (req, res)=> {
-        res.send('connected')
-    })
+    app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+});
 }).catch((error) =>{
      console.log('Error connecting: ', error);
 });
