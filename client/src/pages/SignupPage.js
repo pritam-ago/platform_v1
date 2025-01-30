@@ -9,13 +9,13 @@ const SignupPage = () => {
     const [name, setName] = useState('');
     const [username, setUsername] = useState('');
     const navigate = useNavigate();
-
+    const token = localStorage.getItem('token');
     useEffect(() => {
-      const token = localStorage.getItem('token');
+      
       if (token) {
         navigate('/home');
       }
-    }, [navigate]);
+    }, [token]);
   
     const handleSubmit = async (e) => {
       e.preventDefault();

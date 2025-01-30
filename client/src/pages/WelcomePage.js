@@ -1,8 +1,16 @@
 import React from 'react';
 import { useNavigate, Link } from 'react-router-dom';
+import { useEffect } from 'react';
 
 const WelcomePage = () => {
   const navigate = useNavigate();
+  const token = localStorage.getItem('token');
+  useEffect(() => {
+    
+    if (token) {
+      navigate('/home');
+    }
+  }, [token]);
 
   return (
     <>

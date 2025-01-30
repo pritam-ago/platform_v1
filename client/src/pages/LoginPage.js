@@ -7,13 +7,13 @@ const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
-
+  const token = localStorage.getItem('token');
   useEffect (() => {
-    const token = localStorage.getItem('token');
+
     if (token) {
       navigate('/home');
     }
-  }, [navigate]);
+  }, [token]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -21,7 +21,7 @@ const LoginPage = () => {
       const user = {email, password};
       const response = await api.post('/api/auth/login', user, {withCredentials: true});
       localStorage.setItem('token', response.data.token);
-      console.log('Login Success');
+      console.log('Login Success'); 
       navigate('/home');
     }catch(err){
       console.log('Login Error', err);

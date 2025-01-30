@@ -1,10 +1,17 @@
-import React from 'react'
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProfilePage = () => {
+  const navigate = useNavigate();
+  const logout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+  };
   return (
-    <div>
-      profile
-    </div>
+    <>
+      <h1>Profile</h1>
+      <button onClick={logout}>Logout</button>
+    </>
   )
 }
 
