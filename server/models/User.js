@@ -25,7 +25,7 @@ const UserSchema = new Schema({
         ref: 'Task',
         default: []
     }]
-});
+}, {versionKey: false});
 
 const User = mongoose.model('User', UserSchema);
 

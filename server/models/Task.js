@@ -14,7 +14,7 @@ const taskSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     }
-});
+}, {versionKey: false});
 
 const Task = mongoose.model('Task', taskSchema);
 
