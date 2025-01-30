@@ -29,7 +29,6 @@ const SignupPage = () => {
 
       }catch(e){
         console.log(' Signup Error', e);
-        console.log(e);
       }
     }
 
