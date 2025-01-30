@@ -11,10 +11,12 @@ const corsOptions = {
   origin: 'http://localhost:5000',
   methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials : true
 }
 
 app.use(cors(corsOptions));
 app.use(express.json());
+app.options("*", cors());
 app.use('/api/auth', authRoutes); 
 
 app.get('/', (req, res) => {
