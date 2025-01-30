@@ -1,7 +1,7 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../services/api';
 
 const SignupPage = () => {
     const [email, setEmail] = useState('');
@@ -22,7 +22,7 @@ const SignupPage = () => {
 
       try{
         const newUser = {name, username, email, password};
-        await axios.post('/api/auth/signup', newUser);
+        await api.post('/api/auth/signup', newUser, {withCredentials: true});
         console.log('Signup Success');
         navigate('/login');
 
