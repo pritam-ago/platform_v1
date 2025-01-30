@@ -8,7 +8,7 @@ const Sample = () => {
 
   useEffect(()=> {
     const fetchSample = async () => {
-        const response = api.get('/');
+        const response = await api.get('/');
         setDataSample(response.data);
     }
     fetchSample();
