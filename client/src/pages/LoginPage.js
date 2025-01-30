@@ -1,15 +1,31 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import api from '../services/api';
 
 const LoginPage = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
+  useEffect (() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate('/home');
+    }
+  }, [navigate]);
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('login', email, password)
+    try{
+      const user = {email, password};
+      const response = await api.post('/api/auth/login', user, {withCredentials: true});
+      localStorage.setItem('token', response.data.token);
+      console.log('Login Success');
+      navigate('/home');
+    }catch(err){
+      console.log('Login Error', err);
+    }
   }
 
   return (
